@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+作用域：每个组件vue命令的作用域只在对应的组件中起作用。
+
+作用域插槽:父组件替换插槽的标签，但内容由子组件提供。
+
+-->
+
+<!--<div id="app">-->
+<!--&lt;!&ndash;  v-show在挂载’app‘的组件中起作用，而不是在cpn中起作用&ndash;&gt;-->
+<!--  <cpn v-show="isshow"></cpn>-->
+<!--</div>-->
+
+
+
+
+
+
+<!--<div id="app1">-->
+<!--  <cpn1></cpn1>-->
+
+<!--&lt;!&ndash;  获取子组件中的数据，将其样式变得跟上面组件的不一样&ndash;&gt;-->
+<!--  <cpn1>-->
+<!--&lt;!&ndash;    第一步：确定插槽作用域&ndash;&gt;-->
+<!--    <template slot-scope="slot">-->
+<!--&lt;!&ndash;    第二步：拿到子组件的数据  &ndash;&gt;-->
+<!--      <span v-for="item in slot.data">{{item}}&#45;&#45;</span>-->
+<!--    </template>-->
+<!--  </cpn1>-->
+<!--</div>-->
+
+
+
+<!--<template id="cpn">-->
+<!--  <div>-->
+<!--    <h2>我在测试作用域</h2>-->
+<!--  </div>-->
+<!--</template>-->
+
+
+<!--<template id="cpn1">-->
+<!--  <div>-->
+<!--&lt;!&ndash;    将子组件的数据绑定到插槽上&ndash;&gt;-->
+<!--    <slot :data="languages">-->
+<!--    <ul>-->
+<!--      <li v-for="item in languages">{{item}}</li>-->
+<!--    </ul>-->
+<!--    </slot>-->
+<!--  </div>-->
+<!--</template>-->
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      firstname:'james',
+    },//
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return{
+            lastname:"kobe",
+          }
+        }
+      }
+    }
+
+  })
+
+
+  // const app1=new Vue({
+  //   el:'#app1',
+  //   data:{
+  //     name:'超哥',
+  //     message:'我说你爹',
+  //     counter:'100',
+  //   },//
+  //   components:{
+  //     cpn1:{
+  //       template:'#cpn1',
+  //       data(){
+  //         return{
+  //             languages:['c++','python','php','java','c#','go']
+  //         }
+  //       }
+  //     }
+  //   }
+  //
+  // })
+
+  //作用域测试案例
+  // const app=new Vue({
+  //   el:'#app',
+  //   data:{
+  //     name:'超哥',
+  //     message:'我说你爹',
+  //     counter:'100',
+  //     isshow:false,
+  //   },//
+  //   components:{
+  //     cpn:{
+  //       template:'#cpn',
+  //       data(){
+  //         return{
+  //           isshow: true,
+  //         }
+  //       }
+  //     }
+  //   }
+  //
+  // })
+
+
+</script>
+
+
+</body>
+</html>

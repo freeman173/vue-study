@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--.lazy:数据双向绑定，但不会时刻变化给你看  -->
+  <input type="text" v-model.lazy="message">
+  <h2>{{message}}</h2>
+
+<!--将输入的数据转化为number类型-->
+  <input type="number" v-model.number="age">
+  <h2>{{age}},{{typeof age}}</h2>
+
+<!--  去除输入文本两边的空格-->
+  <input type="text" v-model.trim="message">
+  <h2>{{message}}</h2>
+
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      age:0
+    }//
+
+  })
+
+
+</script>
+
+</body>
+</html>

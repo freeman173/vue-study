@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+在一般的开发中，后台将数据发送到页面根组件，根组件（父组件）再将数据分发给小组件（子组件）。
+
+父传子：通过props属性传递。
+
+驼峰命名：变量值/属性值的英文名中，除了首个单词，其余单词手写字母均为大写
+MyFriend：大驼峰
+myFriend：小驼峰
+
+注：组件里面貌似不支持驼峰命名。
+/-->
+
+
+<div id="app">
+<!--  父组件传递给子组件数据：绑定的第一步-->
+  <cpn v-bind:cinfo="movies" :cmessage="message"></cpn>
+</div>
+
+
+<!-- 组件的模板代码 -->
+<template id="cpn">
+  <div>
+<!-- 数据绑定好之后，就可以使用了！   -->
+    <h2>{{cmessage}}</h2>
+    <h3 v-for="item in cinfo">{{item}}</h3>
+  </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+  //创建子组件
+  const cpn=Vue.extend({
+    template:'#cpn',
+    //绑定的第二步
+    //1、第一种写法：
+    //props:['cmovies','cmessage']
+    //2、第二种写法
+    props:{
+      cinfo:{
+        type:Array,//指定传入数据类型。
+        default:[],//默认值。
+       // required:true,//该数据如果未传进来，提示错误。
+      }
+    }
+
+  })
+  //vue实例可看成是root组件
+  const app=new Vue({
+    el:'#app',
+    data:{
+      movies:['我是谁','复仇者联盟','蜘蛛侠','钢铁侠'],
+      message:'我是超哥',
+    }//
+    ,
+    components:{
+      cpn:cpn,
+    }
+
+  })
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

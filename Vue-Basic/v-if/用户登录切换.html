@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <span v-if="isuser">
+<!--    for属性作用:点击用户账号时，自动聚焦到相应用户账号输入栏  -->
+    <label for="username">用户账号</label>
+<!--    vue底层机制：vue将HTML抽象成一个dom。在dom中它为了节约资源会物尽其用，所以对于不同的input框，可以加一个
+key属性保证其唯一性，避免其被用到其他地方已造成不必要的麻烦！-->
+    <input type="text" id="username" placeholder="用户账号" key="username">
+  </span>
+  <span v-else>
+      <label for="email">用户邮箱</label>
+    <input type="text" id="email" placeholder="用户邮箱"  key="email">
+  </span>
+  <button @click="qiehuan">切换</button>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      isuser:true,
+    },//
+    methods:{
+      qiehuan(){
+        this.isuser=!this.isuser
+      }
+    }
+
+  })
+
+
+</script>
+
+</body>
+</html>

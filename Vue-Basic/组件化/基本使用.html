@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+组件化:
+  对于一个功能繁琐的页面，我们可以试着将其拆分为一个个小的功能块，每个功能块就是一个组件。
+  任何一个vue项目都可以抽象为一颗组件树。
+
+
+全局组件：注册的组件可以在多个vue下使用
+局部组件：只能在注册过的vue下使用
+
+-->
+<div id="app">
+  <cpn_1></cpn_1>
+  <br>
+  <cpn_2></cpn_2>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+//创建并注册全局组件
+  Vue.component('cpn_1',Vue.extend({
+    template:
+        '<div>\n' +
+        '          <h2>我是一个全局组件</h2>\n' +
+        '        </div>'
+  }))
+
+
+
+
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    },//
+    components:{
+      cpn_2:Vue.extend({
+        template:
+            '<div>\n' +
+            '          <h2>我是一个局部组件</h2>\n' +
+            '        </div>'
+      })
+
+    }
+  })
+
+
+</script>
+
+</body>
+</html>

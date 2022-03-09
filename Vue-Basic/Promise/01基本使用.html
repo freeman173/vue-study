@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  //当有异步操作时，用promise进行封装；
+  //在执行传入的回调函数时，会传入两个参数：resolve、reject（他们本身也是函数）；成功时调用resolve，反之调用reject
+
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     reject('error message!')
+  //
+  //
+  //   },1000)
+  // }).then(()=>{
+  //   console.log('我是你爹')
+  // }).catch((err)=>{
+  //   console.log(err)
+  // })
+
+
+
+//  promise包裹异步操作之后会有3种状态：
+  //pending状态:等待状态。
+  //fuifill：满足状态，回调了resolve之后，就处于该状态，之后回调then（）
+  //reject：拒绝状态，回到了reject之后，之后回调catch()
+
+ // new Promise((resolve,reject)=>{
+ //   setTimeout(()=>{
+ //     resolve('message');
+ //     reject('errormessage')
+ //   },1000)
+ // }).then(data=>{
+ //   console.log(data)
+ // },err=>{
+ //   console.log(err)
+ // })
+
+
+
+//  当new了一个Promise出来以后，就可以对这个对象进行then和catch的操作，也就是回调后成功跟失败两种情况对应得方法。
+  //  new Promise对象时候，入参是一个有回调的异步函数，最简单的例如setTimeout()。
+
+// function fun(time,arr=undefined){
+//   return new Promise((resolve,reject)=>
+//   setTimeout(()=>{
+//     try{
+//       console.log(arr[0]);
+//       resolve("success")
+//     }catch (error){
+//       reject(error)
+//     }
+//   },time)
+//   )
+// }
+//
+//
+// let p1=fun(5000,[1]),p2=fun(7000)
+//
+//   p1.then(result=>{
+//     console.log('p1:'+result)
+//   })
+//
+//   p2.then(result=>{
+//     console.warn('p2:'+result)
+//   })
+
+
+
+
+
+  /*
+
+  js引擎是一个单线程引擎，执行程序的顺序：
+    先执行同步任务（不需要等待响应才能执行的任务），再执行异步任务。
+
+
+  promise有三种状态：状态不能回退
+    进行中：
+    已成功：fulfilled
+    已失败：rejected
+
+
+
+  下面代码执行过程：
+
+    function(resolve, reject){
+    if(isLiForfget){
+      var cloth={
+        color:'red',
+        price:'￥120',
+      };
+      resolve(cloth);
+    }else {
+      var err=new Error("forget the promise");
+      reject(err);
+    }
+  } 为promise对象的参数exector（执行器）。
+  执行器函数里面也有两个参数:
+  resolve: 如果能顺利执行（成功状态），resolve可以将必要的数据返回去
+  reject：如果能不能顺利执行（失败状态），reject可以将失败的数据返回去
+
+
+  当执行testfn()函数时，
+    getcloth(Promise对象实例)执行之后内部已经有了结果；
+    然后调用.then()方法：
+      then(fun1//成功状态，fun2)里面有两个参数：
+          onfilled(value):如果成功状态，就调用它，value="resolve(cloth)"中的cloth
+          onrejected（reason）:如果失败调用它，reason="reject(err)"中的err;
+
+    后面可以跟一个.catch方法：
+      当promise进入失败状态时，可以自动捕捉到then里面的onrejected参数并打印出错误//如果跟了.catch方法，在then里面的onrejected参数就没必要
+      写上了。
+   */
+
+
+  var isLiForfget=false;
+
+  var getcloth=new Promise(function(resolve, reject){
+    if(isLiForfget){
+      var cloth={
+        color:'red',
+        price:'￥120',
+      };
+      resolve(cloth);
+    }else {
+      var err=new Error("forget the promise");
+      reject(err);
+    }
+  })
+
+
+  var testfn=function (){
+
+    getcloth.then(function (data){
+      console.log(data.color)
+    }).catch(function (reason){
+      console.log(reason.message)
+    })
+  }
+
+  testfn();
+
+
+  /*  promise.then()的返回值也是一个promise对象， 所以可以持续不断地调用then方法
+
+     */
+  //网络处理：aaa->自己处理
+  //处理：aaa111->自己处理
+  //处理:aaa111222->自己处理
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve('aaa')
+    },5000)
+  }).then(res=>{
+    console.log(res,'第一层处理10行代码');
+    //第一次处理结果:将结果对象promise返回
+    return Promise.resolve(res+"111")
+  }).then(res=>{
+    console.log(res,'第二层处理10行代码')
+    return Promise.resolve(res+'222')
+  }).then(res=>{
+    console.log(res,'第三层处理10行代码')
+  }).catch(err=>{
+    console.log(err)
+  })
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

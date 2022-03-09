@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>当前计数：{{counter}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  //定义并注册一个组件
+  Vue.component('cpn',{
+    template:"#cpn",
+    data(){//组件里面使用函数返回数据时，可以使每个调用该组件的地方都有自己数据变量空间，不至于相互影响。
+      return{
+        counter:0
+      }
+    },
+    methods:{
+      increment(){
+        this.counter++
+      },
+      decrement(){
+        this.counter--
+      }
+    }
+  })
+
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    }//
+
+  })
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <button @click="changeMsg">改变</button>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello world'
+        },
+        methods: {
+            changeMsg () {
+                this.message = 'goodbye world'
+            }
+        },
+        beforeCreate() {
+            console.log('------初始化前------')
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        created () {
+            console.log('------初始化完成------')
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        beforeMount () {
+            console.log('------挂载前---------')
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        mounted () {
+            console.log('------挂载完成---------')
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        beforeUpdate () {
+            console.log('------更新前---------')
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        updated() {
+            console.log('------更新后---------')
+            console.log(this.message)
+            console.log(this.$el)
+        }
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

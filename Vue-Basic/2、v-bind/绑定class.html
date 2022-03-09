@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color:red;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="app">
+<!--  <h2 class="active">{{name}}</h2>&lt;!&ndash; 传统的绑定css &ndash;&gt;-->
+  <h2 v-bind:class="{active:isactive}">{{name}}</h2><!-- 借助vue绑定css：active是否激活   -->
+  <button v-on:click="btnclick">点我</button>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      isactive:true,//css初始激活状态：true
+    },
+    methods:{
+      btnclick:function (){//该函数来切换css的激活状态
+        this.isactive= !this.isactive
+      }
+    }
+  })
+</script>
+
+
+
+</body>
+</html>

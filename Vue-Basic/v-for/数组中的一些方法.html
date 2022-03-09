@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="name in names">{{name}}</li>
+  </ul>
+  <button @click="btnclick">点我</button>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      names:['jdaj','dfads','df','cv','ere','dfsdaf']
+    },//
+    methods:{
+      btnclick(){
+        //1、push方法:队尾入队
+        //this.names.push('dfdf','df','sa')
+        //2、pop:剔除队尾元素
+        //this.names.pop()
+        //3、shift（）：删除数组第一个元素
+        //this.names.shift()
+        //4、unshift():在队首添加元素,
+        //this.names.unshift('as','bs','cs')
+        //5、splice（）：删除、插入、替换
+        //6、sort
+        //this.names.sort()
+        //7、reverse():反向
+        //this.names.reverse()
+        //改变名字词组中的某个位置的值
+        Vue.set(this.names,1,'超哥')
+
+      }
+    }
+  })
+</script>
+</body>
+</html>

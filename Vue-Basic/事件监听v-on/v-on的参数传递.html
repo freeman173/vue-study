@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<!--  事件调用的方法时无参数-->
+  <button @click="btnclick1">按钮1</button>
+
+  <!-- 方法本身需要一个参数，但调用时无参数，这时候vue会将浏览器默认的event事件对象作为参数给传过去-->
+  <button @click="btnclick2">按钮2</button>
+  <!--  v-on传递参数 -->
+<!--  手动获取浏览器的事件参数 -->
+  <button @click="btnclick3(can_2,$event)">按钮3</button>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      can_2:'超哥',
+    },//
+    methods:{
+      btnclick1(){
+        console.log('btnclick1')
+      },
+      btnclick2(can_1){
+        console.log(can_1)
+      },
+      btnclick3(can_2,event){
+        console.log(can_2);
+        console.log(event)
+      }
+    }
+
+  })
+
+
+</script>
+
+</body>
+</html>

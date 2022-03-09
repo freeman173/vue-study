@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <div @click="divclick">
+    button外
+<!--    .stop修饰符：只触发自己的事件，其他的不管-->
+    <button @click.stop="btnclick">按钮</button>
+  </div>
+  <br>
+<!-- .prevent : 阻止默认事件的发生      -->
+  <form action="dd">
+    <input type="submit" value="提交" @click.prevent="sumclick">
+  </form>
+
+  <!-- 监听键盘的下落次数-->
+  <input type="text" @keyup="keyup">
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    },//
+    methods:{
+      btnclick(){
+        console.log('btnclick')
+      },
+      divclick(){
+        console.log('divclick')
+      },
+      sumclick(){
+        console.log('subclick')
+      },
+      keyup(){
+        console.log('keyup')
+      }
+    }
+  })
+
+
+</script>
+</body>
+</html>

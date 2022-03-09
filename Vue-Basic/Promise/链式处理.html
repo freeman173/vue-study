@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  //网络处理：aaa->自己处理
+  //处理：aaa111->自己处理
+  //处理:aaa111222->自己处理
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve('aaa')
+    },1000)
+  }).then(res=>{
+    console.log(res,'第一层处理10行代码');
+    //第一次处理结果
+    return Promise.resolve(res+"111")
+  }).then(res=>{
+    console.log(res,'第二层处理10行代码')
+    return Promise.resolve(res+'222')
+  }).then(res=>{
+    console.log(res,'第三层处理10行代码')
+  }).catch(err=>{
+    console.log(err)
+  })
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>全名：{{fullname}}</h2><!--  -->
+
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      fitrstname:'kobe',
+      lastname:'brant',
+    },//
+    computed:{
+      fullname:{//计算属性里面自带了set与get方法，当我们调用计算属性时，set与get将会在需要时，被自动调用
+        set:function (newvalue){//需要传入参数：比如在测试台输入新的全名时，就调用该函数
+          const names=newvalue.split(' ');
+          this.fitrstname=names[0];
+          this.lastname=names[1];
+
+        },
+        get:function (){
+          return this.fitrstname+' '+this.lastname
+        }
+      }
+    }
+  })
+</script>
+
+
+</body>
+</html>

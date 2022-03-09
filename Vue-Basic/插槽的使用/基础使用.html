@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+组件的插槽可以让我们的组件更有扩展性；
+-->
+
+
+<div id="app">
+<!--  插槽的空位在这里补齐-->
+ <cpn><button>按钮</button></cpn>
+  <cpn><h2>这里无按钮</h2></cpn>
+</div>
+
+
+<template id="cpn">
+  <div>
+    <h2>我是组件</h2>
+<!--    预留一个插槽，供用户使用  -->
+    <slot></slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    },//
+    components:{
+      cpn:{
+        template:'#cpn',
+      }
+    }
+
+  })
+
+
+</script>
+
+
+
+</body>
+</html>

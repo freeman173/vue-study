@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2></h2><!--  -->
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+/*
+  编程范式：面向对象编程：以对象为编程基础
+  */
+
+//给定一个数组，有三个需求：取出<100的数字;将所有数字乘以2；求和
+//filter、map、reduce
+const nums=[10,50,60,80,90,100,120,103,349,340,20,40]
+
+// //filter的使用：
+// let nums_one=nums.filter(function (n) {
+//   return n<100
+// })
+// console.log(nums_one)
+//
+// //map的使用：
+// let num_two=nums_one.map(function (n) {
+//   return 2*n
+// })
+// console.log(num_two)
+//
+// //reduce在这里的使用：将数组元素求和（prevalue的初始值为0)
+// let num_three=num_two.reduce(function (prevalue,n) {
+//   return prevalue+n
+// },0)
+// console.log(num_three)
+
+//综合写法1
+let num_total=nums.filter(function (n) {
+  return n<100
+}).map(function (n) {
+  return n*2
+}).reduce(function (prevalue,n) {
+  return prevalue+n
+},0)
+console.log(num_total)
+
+//综合写法2:reduce函数的prevalue初始值默认为0
+let num_total_2=nums.filter(n=>n<100).map(n=>n*2).reduce((prevalue,n)=>prevalue+n)
+console.log(num_total_2)
+
+
+</script>
+</body>
+</html>

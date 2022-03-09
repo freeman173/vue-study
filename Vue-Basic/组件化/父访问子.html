@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn ref="ccc"></cpn>
+  <button @click="btnclick">按钮</button>
+</div>
+
+
+
+<template id="cpn">
+  <div>
+    我是超哥
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'我是超哥',
+    },//
+    methods:{
+      btnclick(){
+        //$children以数组的形式可以访问子元素。但如果后期有添加组件的情况，就会使得代码的复用性很差。
+       //console.log(this.$children)
+        //通过refs引用属性一对一访问对应组件。
+        console.log(this.$refs.ccc.showMessage())
+
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return{
+            players:['周杰伦','林俊杰','许嵩','超哥']
+          }
+        },
+
+        methods:{
+          showMessage(){
+            console.log('showmessage!')
+          }
+        }
+      }
+
+    }
+
+  })
+
+
+</script>
+
+</body>
+</html>

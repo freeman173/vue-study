@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超哥无敌</title>
+</head>
+<body>
+
+<div id="app_1">
+    <h2>姓名:{{name}}</h2>
+    <h2>信息:{{message}}</h2>
+    <h4>喜欢的电影</h4>
+    <ul>
+        <!--  使用vue的循环命令，将列表元素打印出来-->
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+
+</div>
+
+<!-- 预准备工作：引入对应的库-->
+<script src="../js/vue.js"></script>
+<script>
+//let:变量    const:常量
+const app_1=new Vue({
+    el:'#app_1',//挂载要管理的元素
+    data:{
+        name:'超哥',
+        message:'超哥开始学习vue啦！！',
+        movies:['教父','星际穿越','大话西游','奇迹','我是谁']
+    }
+})
+
+
+
+
+/*
+工作：越往后、越轻松。
+
+vue编程：声明式编程，定义好的vue对象，将元素挂载到对应方框上即可显示对应数据（不需要关注其内部如何实现）。
+    修改数据时，只需要修改vue对象中的数据即可：数据可来自服务器后台，响应式（只要vue中数据变了，
+    挂载了vue对象的地方，数据会自动变）
+
+    代码执行流程：
+        当执行到对应的html代码时，显示出对应的html代码；在执行到vue实例对象时，创建vue对象，并将对象中的数据传入并显示到html的
+        对应部分。
+
+
+传统js的做法（命令式编程：命令你一步步做事)：创建div，设置id属性；定义变量message；将变量放在前面的div元素中显示。
+*/
+</script>
+
+
+
+</body>
+</html>

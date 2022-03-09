@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div>
+  <h2></h2><!--  -->
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  //1、属性增强
+  const name='jc'
+  const age=18;
+  const height=1.80;
+
+  //ES5写法
+  // const obj={
+  //   name:name,
+  //   age:age,
+  //   height:height
+  // }
+
+  //ES6写法：跟上面效果一致，但更简化
+  const obj={
+    name,
+    age,
+    height,
+  }
+  console.log(obj)
+
+  //2、函数增强
+  //ES5写法
+  const obj={
+    speak:function (){
+
+    }
+  }
+  //ES6写法
+  const obj={
+    speak(){
+
+    }
+  }
+
+
+
+</script>
+
+</body>
+</html>

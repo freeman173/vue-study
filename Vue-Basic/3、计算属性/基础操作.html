@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2>{{firstname}}   {{lastname}}</h2><!--  -->
+  <h2>{{getname()}}</h2><!-- 通过方法来调用 -->
+  <h2>{{fullname}}</h2><!-- 通过计算这个属性来调用 -->
+<!--  注：计算属性跟方法函数调用的差别：当调用全名5次时，如果用函数方法，就需要调用5次；如果用计算属性，
+则只需要调用一次（内部有一个缓存机制）-->
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      firstname:'lebron',
+      lastname:'james',
+      message:'我说你爹',
+      counter:'100',
+    }//
+    ,
+    methods:{
+      getname(){
+        return this.firstname+"  "+this.lastname
+      }
+    }
+    ,computed:{//虽然跟方法类似，但是我们将它当作属性来看
+      fullname:function (){
+        return this.firstname+"  "+this.lastname
+      }
+    }
+  })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+ <cpn></cpn>
+</div>
+
+
+<template id="cpn_1">
+  <div>
+    <h2>我是一个代码抽离的组件</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  //创建并注册全局组件
+  Vue.component('cpn',{
+    template:'#cpn_1',
+  })
+
+
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    },//
+  })
+
+</script>
+
+
+</body>
+</html>

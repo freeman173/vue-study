@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color:red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+<!-- ':class="{active:currentindex === index': 将css样式绑定到当前点击的index元素  -->
+    <li v-for="(name,index) in names" :class="{active:currentindex === index}" @click="liclick(index)">{{index}}:{{name}}</li>
+  </ul>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      names:['a','b','c','d','e'],
+      currentindex:0
+    },//
+    methods:{
+      liclick(index){
+        this.currentindex=index
+      }
+    }
+  })
+
+
+</script>
+
+
+</body>
+</html>

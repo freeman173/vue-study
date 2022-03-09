@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+  <!--  遍历对象，如果只获取一个值，则获取到value-->
+  <ul>
+    <li v-for="item in person">{{item}}</li>
+  </ul>
+  <!--  遍历对象，获取键值对-->
+  <ul>
+    <li v-for="(key,value) in person">{{key}}:{{value}}</li>
+  </ul>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      person:{
+        name:'超哥',
+        age:24,
+        height:1.72,
+      }
+    }//
+
+  })
+
+
+</script>
+
+</body>
+</html>

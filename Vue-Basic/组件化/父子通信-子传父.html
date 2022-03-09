@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+子传父流程：
+  第一步：
+  第二步:
+  第三步：
+
+
+-->
+
+
+<div id="app">
+<!--  第3步：专门监听子组件的’itemclick‘事件，一旦有，马上调用cpnclick函数处理：在cpnclick中，
+系统会默认将item作为参数传过去。
+  -->
+  <cpn v-on:itemclick="cpnclick"></cpn>
+</div>
+
+
+<template id="cpn">
+  <div>
+<!--  第一步：将需要传回的数据放入点击事件绑定的函数  -->
+    <button v-for="item in categories" @click="itemclick(item)">{{item.name}}</button>
+  </div>
+
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  //创建子组件
+  const cpn=Vue.extend({
+    template:"#cpn",
+    data(){
+      return{
+        categories:[
+          {id:'aaa',name:'手机数码'},
+          {id:'bbb',name:'运动休闲'},
+          {id:'ccc',name:'体育用品'},
+          {id:'ddd',name:'绿色食品'},
+        ]
+      }
+    },
+    methods:{
+      itemclick(item){
+        //第二步：向根组件（vue实例）发射该事件，并将数据也发过去。
+        this.$emit('itemclick',item)
+      }
+    }
+
+
+  })
+
+  //vue实例（根组件）
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+    }//
+    ,
+    components:{
+      cpn:cpn,
+    },
+    methods:{
+      cpnclick(item){
+        console.log('cpnclick:'+item.name)
+      }
+    }
+
+  })
+
+
+</script>
+
+
+
+</body>
+</html>

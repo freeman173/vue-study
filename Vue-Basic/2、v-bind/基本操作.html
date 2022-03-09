@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <img :src="imgurl"><!--  v-bind:动态绑定标签中属性中的内容以方便服务器数据的刷新,可以简写 -->
+  <a v-bind:href="url">百度一下</a>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      imgurl:'https://img13.360buyimg.com/babel/s1180x940_jfs/t1/217552/18/11190/117155/61e90489E54b6d795/634677ebc16cca34.jpg.webp',
+      url:'https://www.baidu.com',
+    }//
+
+  })
+
+
+</script>
+
+</body>
+</html>

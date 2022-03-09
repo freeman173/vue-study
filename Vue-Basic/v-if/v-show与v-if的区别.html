@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-show="isshow">{{name}}</h2><!--
+    v-if:条件为false，相应的元素不会出现在dom中
+    v-show：条件为false时，v-show会添加一个行内属性：display=none，将对应元素隐藏起来。
+
+    注：如果切换一次，就用v-if
+    -->
+  <button @click="show">点我</button>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      name:'超哥',
+      message:'我说你爹',
+      counter:'100',
+      isshow:true,
+    },//
+    methods:{
+      show(){
+        this.isshow=!this.isshow
+      }
+    }
+  })
+
+
+</script>
+</body>
+</html>

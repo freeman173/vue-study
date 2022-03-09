@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+webpack:
+ 1、webpack是近期最火的一款模块加载器兼打包工具。目的就是把有依赖关系的各种文件打包成一系列的静态资源。
+
+2、wepback它的目标是是什么？webpack它能将依赖的模块转化成可以代表这些包的静态文件。
+  将依赖的模块分片化，并且按需加载
+  解决大型项目初始化加载慢的问题
+  每一个静态文件都可以看成一个模块
+  可以整合第三方库
+  能够在大型项目中运用
+  可以自定义切割模块的方式
+
+3、webpack为什么要将所有资源放在一个文件里面？
+  我们知道，对于浏览器来说，加载的资源越少，响应的速度也就越快，所以有时候我们为了优化浏览器的性能，
+  会尽可能的将资源合并到一个主文件app.js里面。当你的项目十分庞大的时候，不同的页面不能做到按需加载，
+  而是将所有的资源一并加载，耗费时间长，性能降低。
+
+  而webpack可以很好的解决以上缺点。
+
+4、webpack的配置问题
+生成package.json文件：因为webpack是一个基于node的项目。然后首先我们需要在根目录下生成package.json文件
+通过全局安装webpack
+每个目录下都必须有一个webpack.config.js。就是一个项目配置，告诉webpack需要做什么。
+
+创建 package.json 文件: npm init
+快速创建 package.json 文件: npm init --yes
+
+
+-->
+
+
+
+<!--
+node.js:
+1、
+  Node.js 不是一门编程语言，它是一个执行 JavaScript 代码的工具。工具是指可以安装在计算机操作系统之上的软件。
+
+  为什么浏览器和 Node.js 都可以运行 JavaScript？因为浏览器和 Node.js 都内置了 JavaScript V8 Engine。
+它可以将 JavaScript 代码编译为计算机能够识别的机器码。
+
+  JavaScript 运行在浏览器中控制的是浏览器窗口和 DOM 文档。
+  JavaScript 运行在 Node.js 中控制的操作系统级别的内容。
+
+
+  Node.js 能够做什么？
+我们通常使用它来构建服务器端应用和创建前端工程化工具。
+JavaScript 运行在浏览器中我们就叫它客户端 JavaScript。
+JavaScript 运行在 Node.js 中我们就叫它服务器端 JavaScript。
+
+
+2、模块系统
+一个 JavaScript 文件就是一个模块，在模块文件中定义的变量和函数默认只能在模块文件内部使用，如果需要在其他文件中使用，
+必须显式声明将其进行导出。
+
+  在每一个模块文件中，都会存在一个 module 对象，即模块对象。在模块对象中保存了和当前模块相关信息。
+在模块对象中有一个属性 exports，它的值是一个对象，模块内部需要被导出的成员都应该存储在到这个对象中。
+
+  在其他文件中通过 require 方法引入模块，require 方法的返回值就是对应模块的 module.exports 对象。
+在导入模块时，模块文件后缀 .js 可以省略，文件路径不可省略。
+
+在 Node.js 安装完成后，会内置一些非常有用的模块。
+Path：模块内提供了一些和路径操作相关的方法。
+File system：文件操作系统，提供了和操作文件相关的方法。
+在引入内置模块时, 使用的是模块的名字，前面不需要加任何路径。
+
+
+3、npm
+1.
+Node Package Manager，Node.js 环境中的软件包管理器。随 Node.js 一起被安装。
+它可以将 Node 软件包添加到我们的应用程序中并对其进行管理，比如下载，删除，更新，查看版本等等。
+
+2.
+Node.js 软件包
+软件包下载完成后会发生三件事：
+软件包会被存储在 node_modules 文件夹中，如果在应用中不存在此文件夹，npm 会自动创建。
+软件包会被记录在 package.json 文件中. 包含软件包的名字以及版本号。
+npm 会在应用中创建 package-lock.json 文件, 用于记录软件包及软件包的依赖包的下载地址及版本。
+
+在引入第三方软件包时，在 require 方法中不需要加入路径信息，只需要使用软件包的名字即可，
+require 方法会自动去 node_modules 文件夹中进行查找。
+
+3、本地安装与全局安装
+
+本地安装：将软件包下载到应用根目录下的 node_modules 文件夹中，软件包只能在当前应用中使用。
+
+全局安装：将软件包下载到操作系统的指定目录中，可以在任何应用中使用。
+
+4、
+配置入口文件的作用：应用程序入口文件就是应用程序执行的起点，就是启动应用程序时执行的文件。
+场景一：其他开发者拿到你的软件包以后，通过该文件可以知道应用的入口文件是谁，通过入口文件启动应用。
+场景二：通过 node 应用文件夹 命令启动应用。node 命令会执行 package.json 文件中 main 选项指定的入口文件，
+如果没有指定入口文件，则执行 index.js。
+
+5、模块查找规则
+
+1、在指定了查找路径的情况下
+查找 server.js
+查找 server.json
+查找 server 文件夹, 查看入口文件 (package.json -> main)
+查找 server 文件夹 中的 index.js 文件
+
+2、在没有指令查找路径的情况下
+-->
+
+
+<!--
+脚手架:开发大型项目时，需要考虑到项目的结构等问题，使用Vue CLI这个工具会比较方便。
+
+安装：npm install -g @vue/cli@版本号
+卸载：npm uninstall -g @vue/cli@版本号
+
+vue cli2创建项目命令：vue init webpack my-project
+
+
+vuecli2目录结构解析:
+  bulid/config文件夹：项目配置。
+
+  package.json:
+  package-lock.json:可以锁定依赖包的版本
+  .editorconfig:代码编辑配置
+
+  node_modules:项目依赖模块
+  src：写代码文件夹
+  .babelrc:ES代码转化配置
+  .gitgnore:git仓库忽略文件夹配置
+  .postcssrc:css转化配置
+
+  如果不用ESLint代码规范，可以在config.index.js中把useeslint设置为false
+
+
+
+
+
+cli中runtimecompiler与runtimeonly的区别：
+
+  new Vue({
+  el: '#app',
+  components: { App },
+  template: '<App/>'
+})
+  :使用App组件时，先在组件中注册，再通过模板使用。
+    template———ast——————render————vdom————UI
+
+  new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+  ：render————vdon————UI
+
+  显然，下面的代码效率更高。
+
+  如果开发之后，依然使用template，就选runtime-compiler。
+
+
+
+
+
+-->
+
+
+
+
+<!--
+vue-cli3与vue-cli2的区别：
+  0配置：配置文件夹被隐藏。
+  提供了vue ui的命令，提供了可视化配置。
+  移除了static文件夹，新增了public文件夹替代前者。
+  .gitignore:github上传忽略配置
+
+
+
+cli3初始化项目命令： vue create 项目名
+
+vue ui:图像化管理界面，方便的很
+
+
+
+-->
+
+
+
+
+<!--
+后端渲染：前后端不分离的情况下，后端将渲染好的界面返还到前端。
+
+前后端分离：
+  随着ajax技术的出现，前后端开始分离。后端只提供api返回数据，前端通过ajax获取数据并通过js将数据渲染到页面中（前端渲染）。
+
+单页面富应用阶段：
+  在前后端分离的基础上加了一层前端路由。
+  前端路由核心：改变url，但是页面不进行整体刷新。
+
+改变url但页面不刷新：
+  vue中 url的hash：本质上是改变window.location的herf属性，但页面不刷新。
+    控制台：输入 location.hash='aaa' 。url：从 http://localhost:8080/# ->http://localhost:8080/#/aaa
+
+  HTML5中的history：
+    history.pushState({},'','home')//最后的‘home’为加入的路由地址。
+    history.back()/history.go(-1):与上面的命令配套使用，上面的pushstate为入栈，back为出栈（回到上一次路由地址）。
+    history.forward()/history(1):与history.back()相对。
+
+    history.replaceState({},'','about')//状态替换操作，无压栈处理
+
+
+-->
+
+
+
+
+
+<!--
+vue-router:
+  路由用于设定访问路径，将路径与组件映射起来；页面路径的改变与组件的切换相对应。
+
+使用:
+路由的框架搭建：
+  安装路由：npm install vue-router --save
+  部署使用：导入路由对象；创建路由实例；在vue组件中将路由实例挂载上。
+
+路由的具体配置：
+  在components中创建路由组件；
+  在router/index中配置映射关系；
+  在APP主页中使用<router-link>与<router-view>进行页面切换。
+
+
+路由的代码跳转：
+    在APP组件中，调用方法：
+        $router为路由对象实例，借助该对象中的push/replace跳转过去。
+
+
+
+动态路由：访问路径后面添加一些指定信息（姓名、商品名之类……）
+
+
+路由嵌套：
+  组件里面再套一个组件。
+
+
+路由中的参数传递方式：
+  1、动态路由：使用$route中的params传递
+             传递方式：/path/123
+
+  2、query类型：
+            传递方式:/path?id=123
+            使用query中的key传递
+-->
+
+
+<!--
+将项目打包之后，存放在dist文件夹：
+  html骨架：index.html
+  css文件夹：存放样式
+  js文件夹：
+      app:项目的源码
+      man:项目的底层支持件
+      ven:第三方依赖
+
+
+路由懒加载：
+  如果打包之后，js文件非常大，项目启动就会很慢，影响页面加载；
+  可以将不同路由的组件分割成不同代码块，打包时就会形成多个包，按需加载。
+
+
+-->
+
+
+<!--
+导航守卫:
+  路由对象里面的一个方法：当应用在路由之间来回切换时，可以利用该方法提前做一些预备工作。
+  router.beforeEach：当路由之间切换时，提前调用该方法做一些准备工作。
+
+
+
+组件的状态保持：
+  keep-alive组件：可以使被包含的组件保留状态，避免被重新渲染。
+
+-->
+
+
+<!--
+tabbar组件封装：
+注：系统的build/weboack.base文件中，可以给常用的文件夹起别名，方便引用。
+
+组件封装技术：
+  将需要经常用到的功能封装成块，以后需要用到时，直接拿过来用就行。
+
+
+
+同步就是我强依赖你(对方)，我必须等到你的回复，才能做出下一步响应。
+异步则相反，我并不强依赖你，我对你响应的时间也不敏感，无论你返回还是不返回，
+我都能继续运行；你响应并返回了，我就继续做之前的事情，你没有响应，我就做其他的事情。
+
+
+-->
+
+
+
+<!--
+vuex:为状态管理提供了一个插件。
+  多个组件共享的变量存储在一个公用对象里。
+
+ 比如：用户的登录状态、位置信息……需要在多个组件共享。
+
+
+
+单界面的状态管理：
+  view、action（行为）、state（状态）
+
+
+vuex单一状态树：只使用一个store对象管理项目的状态会比较好。
+
+
+
+对象解构语法：
+const obj={
+name:'why'，
+age:18,
+weight:60
+height:1.72
+}
+//用这种取法就很好
+const{name,age,weight,height}=obj
+
+-->
+
+
+<!--
+axios:
+  ajax i/o system
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

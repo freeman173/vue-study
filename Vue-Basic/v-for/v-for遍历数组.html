@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+
+<body>
+<div id="app">
+<!--  遍历数组(无下标值)-->
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+<!--  遍历数组（带下标）-->
+  <ul>
+<!-- ‘v-for语句’后面加了‘ :key="item"’ ：用key给item属性值做了唯一标识，方便vue虚拟的dom树高效工作 -->
+    <li v-for="(item,index) in names":key="item">{{index+1}}:{{item}}</li>
+  </ul>
+
+</div>
+
+
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      names:['超哥','刘琪','谢警徽','刘涛','谭四军','盛正林']
+
+    }//
+
+  })
+
+
+</script>
+</body>
+</html>

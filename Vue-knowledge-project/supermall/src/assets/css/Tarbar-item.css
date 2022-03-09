@@ -1,0 +1,16 @@
+/* 给tab-bar-item添加样式*/
+.tar-bar-item{
+  flex: 1;
+  text-align: center;
+  height: 49px;
+  font-size: 14px;
+}
+
+.tar-bar-item img{
+  width: 24px;
+  height: 24px;
+}
+
+.active{
+  color: #b94a48;
+}

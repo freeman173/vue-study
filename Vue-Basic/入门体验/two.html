@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计数器</title>
+</head>
+<body>
+
+<!-- view层 -->
+<div id="app">
+    <h2>当前计数:{{counter}}</h2>
+    <button v-on:click="add">+</button><!-- 利用vue工具：监听该处的的点击事件，如果点击了就调用app对象中的add函数   -->
+    <button v-on:click="sub">-</button>
+</div>
+
+<!-- 预准备工作：引入对应的库-->
+<script src="../js/vue.js"></script>
+<script>
+//let:变量    const:常量
+
+//model层
+const obj={
+    counter:0
+}
+
+//VueModel层
+const app=new Vue({
+    el:'#app',//挂载要管理的元素
+    data:obj,//vue使用了一个代理层：将obj中的数据取过来直接用了。
+    //定义方法：加法与减法
+    methods:{
+        add:function (){
+            console.log("add被执行了！")
+            this.counter++
+        },
+        sub:function (){
+           console.log("sub被执行了！")
+           this.counter--
+        }
+    }
+})
+
+
+
+/*
+MVVM模式：vue通过这种方式来传递数据。
+    View:即html中的dom层，用于给用户展示信息。
+
+    model层：数据层，实际项目中，数据一般来自后台服务器。
+
+    VueModel层：视图模型层：model与view沟通的桥梁，比如数据绑定：model中的数据变化后，及时将变化传递到view中。
+
+
+vue的选项：
+    el：
+        类型：string/htmlelement
+        作用：决定vue管理哪一个dom
+
+    data：
+        类型：object/function
+        作用：vue中的数据对象
+
+    methods：
+        类型：
+        作用：定义vue中的方法，可以在需要的地方调用
+
+ */
+
+
+
+</script>
+
+
+
+</body>
+</html>
